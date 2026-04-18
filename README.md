@@ -1,12 +1,42 @@
 # FastAPI JWT Notes
 
-A FastAPI backend project that will implement user authentication with JWT and ownership-based note authorization.
+A production-style backend API built with FastAPI, SQLite, SQLAlchemy, and JWT authentication.
+
+## Features
+- User registration and login
+- Password hashing
+- JWT authentication
+- Ownership-based authorization
+- SQLite + Alembic migrations
+- Automated tests with Pytest
 
 ## Setup
 
 ```bash
 python -m venv venv
-source venv\Scripts\activate
+venv\Scripts\activate
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+alembic upgrade head
+python run.py
+```
+
+## API Docs
+http://127.0.0.1:8000/docs
+
+## Auth Flow
+
+### Register
+POST /auth/register
+
+### Login
+POST /auth/login
+
+Returns JWT token.
+
+### Use Token
+Authorization: Bearer <token>
+
+## Run Tests
+```bash
+pytest -v
 ```
