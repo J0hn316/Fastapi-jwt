@@ -16,7 +16,7 @@ def create_note(db: Session, data: NoteCreate, *, owner: User) -> Note:
     return note
 
 
-def get_note_for_owner(db: Session, note_id: int, *, owner: User) -> Note | Note:
+def get_note_for_owner(db: Session, note_id: int, *, owner: User) -> Note | None:
     stmt = select(Note).where(Note.id == note_id, Note.owner_id == owner.id)
     return db.execute(stmt).scalar_one_or_none()
 
